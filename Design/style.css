@@ -21,5 +21,23 @@ section {
 }
 
 @media (max-width: 768px) {
-    
+    nav{
+        width: 95%;
+    }
+
+    #navItems{
+        display: none !important;
+    }
+
+    button > span{
+        display: none !important;
+    }
+
+    button > img{
+        display: block !important;
+    }
+
+    button{
+        background-color: white !important;
+    }
 }
