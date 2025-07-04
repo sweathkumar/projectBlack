@@ -7,8 +7,8 @@ a {
   color: black;
 }
 
-footer > div > div > div > div > a{
-    color: white;
+footer > div > div > div > div > a {
+  color: white;
 }
 
 h1,
@@ -35,8 +35,8 @@ section {
   padding: 0 5%;
 }
 
-footer{
-    padding: 0 5%;
+footer {
+  padding: 0 5%;
 }
 
 @media (max-width: 768px) {
@@ -65,7 +65,11 @@ footer{
     width: 80% !important;
   }
 
-  .footerResp{
+  .projects-wrapper {
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  }
+
+  .footerResp {
     display: flex;
     flex-direction: column;
     gap: 20px;
