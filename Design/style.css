@@ -104,11 +104,8 @@ footer {
   }
 
   #mobileNav {
-    transition: max-height 1s ease !important;
-    overflow: hidden;
-  }
-
-  #mobileNav.open {
+    height: 0;
+    overflow: hidden !important;
     transition: max-height 1s ease !important;
   }
 }
