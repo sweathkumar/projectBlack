@@ -51,6 +51,7 @@ nav {
 }
 
 #mobileNav {
+  height: 0;
   visibility: hidden;
 }
 
