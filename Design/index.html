@@ -81,6 +81,8 @@
       </div>
     </nav>
 
+    <section id="overlay"></section>
+
     <section
       style="
         background: url('./Resources/bgOne.svg');
@@ -480,9 +482,11 @@
       document.addEventListener("click", function (event) {
         const nav = document.querySelector("nav");
         const menu = document.getElementById("mobileNav");
+        const overlay = document.getElementById("overlay");
         const isMenuOpen = menu.style.display === "block";
         if (!nav.contains(event.target) && isMenuOpen) {
           menu.style.display = "none";
+          overlay.style.display = "none";
         }
       });
 
@@ -490,8 +494,10 @@
         var menuid = document.getElementById("mobileNav"); // No #
         if (menuid.style.display === "block") {
           menuid.style.display = "none";
+          overlay.style.display = "none";
         } else {
           menuid.style.display = "block";
+          overlay.style.display = "block";
         }
       }
     </script>

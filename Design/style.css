@@ -34,6 +34,19 @@ nav {
   border: 1px #cfcfcf solid;
 }
 
+#overlay{
+    display: none;
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    opacity: 0.5;
+    padding: 0;
+    margin: 0;
+    background-color: black;
+    backdrop-filter: blur(2px);
+    z-index: 9998;
+}
+
 .shadow {
   box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
   border: 1px #cfcfcf solid;
@@ -73,13 +86,23 @@ footer {
     width: 80% !important;
   }
 
-.projects-grid {
-      grid-template-columns: 1fr !important;
-    }
+  .projects-grid {
+    grid-template-columns: 1fr !important;
+  }
 
   .footerResp {
     display: flex;
     flex-direction: column;
     gap: 20px;
+  }
+
+  #mobileNav {
+    max-height: 0;
+    overflow: hidden;
+  transition: transform 0.3s ease, max-height 0.5s ease, opacity 0.3s ease;
+  }
+
+  #mobileNav.open {
+    max-height: 500px;
   }
 }
