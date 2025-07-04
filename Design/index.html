@@ -633,6 +633,19 @@
     </footer>
 
     <script>
+      function menuOpen() {
+        const menu = document.getElementById("mobileNav");
+        const overlay = document.getElementById("overlay");
+
+        if (menu.classList.contains("open")) {
+          menu.classList.remove("open");
+          overlay.classList.remove("visible");
+        } else {
+          menu.classList.add("open");
+          overlay.classList.add("visible");
+        }
+      }
+
       document.addEventListener("click", function (event) {
         const nav = document.querySelector("nav");
         const menu = document.getElementById("mobileNav");
@@ -640,22 +653,9 @@
 
         if (!nav.contains(event.target) && menu.classList.contains("open")) {
           menu.classList.remove("open");
-          overlay.style.visibility = "hidden";
+          overlay.classList.remove("visible");
         }
       });
-
-      function menuOpen() {
-        const menu = document.getElementById("mobileNav");
-        const overlay = document.getElementById("overlay");
-
-        if (menu.classList.contains("open")) {
-          menu.classList.remove("open");
-          overlay.style.visibility = "hidden";
-        } else {
-          menu.classList.add("open");
-          overlay.style.visibility = "visible";
-        }
-      }
     </script>
   </body>
 </html>
