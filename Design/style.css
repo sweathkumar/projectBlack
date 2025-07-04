@@ -73,9 +73,9 @@ footer {
     width: 80% !important;
   }
 
-  .projects-wrapper {
-    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-  }
+.projects-grid {
+      grid-template-columns: 1fr !important;
+    }
 
   .footerResp {
     display: flex;
