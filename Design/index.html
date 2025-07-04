@@ -2,8 +2,10 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
+    <meta name="theme-color" content="#000000">
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Project Black</title>
+    <link rel="icon" href="Resources/logoTab.ico" type="image/x-icon">
     <link rel="stylesheet" href="./style.css" />
   </head>
 
@@ -61,7 +63,7 @@
       <div
         id="mobileNav"
         class="open"
-        style="display: none; width: 100%; margin: 20px auto"
+        style="display: block; width: 100%; padding: 20px auto"
       >
         <div
           class="stack-h"
@@ -483,21 +485,27 @@
         const nav = document.querySelector("nav");
         const menu = document.getElementById("mobileNav");
         const overlay = document.getElementById("overlay");
-        const isMenuOpen = menu.style.display === "block";
+        const isMenuOpen = menu.style.visibility === "visible";
         if (!nav.contains(event.target) && isMenuOpen) {
-          menu.style.display = "none";
-          overlay.style.display = "none";
+          menu.style.visibility = "hidden";
+          menuid.style.maxHeight = "0";
+          menuid.style.height = "0";
+          overlay.style.visibility = "hidden";
         }
       });
 
       function menuOpen() {
         var menuid = document.getElementById("mobileNav"); // No #
-        if (menuid.style.display === "block") {
-          menuid.style.display = "none";
-          overlay.style.display = "none";
+        if (menuid.style.visibility === "visible") {
+          menuid.style.visibility = "hidden";
+          menuid.style.maxHeight = "0";
+          menuid.style.height = "0";
+          overlay.style.visibility = "hidden";
         } else {
-          menuid.style.display = "block";
-          overlay.style.display = "block";
+          menuid.style.visibility = "visible";
+          menuid.style.height = "auto";
+          menuid.style.maxHeight = "500px";
+          overlay.style.visibility = "visible";
         }
       }
     </script>
