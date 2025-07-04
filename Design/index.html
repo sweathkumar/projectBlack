@@ -61,7 +61,8 @@
         <img style="display: none" src="./Resources/menu.svg" alt="" />
       </button>
 
-      <div id="mobileNav" style="display: block; width: 100%">
+      <div 
+        id="mobileNav" class="mobileNav"  style="display: block; width: 100%">
         <div
           class="stack-h"
           style="
@@ -69,14 +70,13 @@
             flex-direction: column;
             gap: 15px;
             align-items: center;
-            margin: 20px auto;
           "
         >
-          <a href="#">About</a>
+          <a style="margin-top: 20px;" href="#">About</a>
           <a href="#">Features</a>
           <a href="#">Pricing</a>
           <a href="#">Contact</a>
-          <a href="#">Updates</a>
+          <a style="margin-bottom: 20px;" href="#">Updates</a>
         </div>
       </div>
     </nav>
@@ -140,7 +140,7 @@
       >
         <p style="font-size: 2rem; font-weight: 700">Works</p>
         <p style="font-size: 1rem">
-          Major works ive worked on with my hands on experiance
+          Major areas where I specialize with practical experience
         </p>
       </div>
       <div
@@ -247,10 +247,7 @@
       >
         <p style="font-size: 1rem; font-weight: 600">Yes, exactly.</p>
         <p style="font-size: 1rem; width: 90%">
-          Your app is currently targeting Android 13 (API level 33). Since
-          Google Play's new policy requires apps to target at least Android 14
-          (API level 34) starting August 31, 2025, you must update your app to
-          target API 34 or higher by that deadline.
+          I dive deep into each domain with hands-on builds, ensuring real value and innovative outcomes.
         </p>
       </div>
     </section>
@@ -282,7 +279,7 @@
       >
         <p style="font-size: 2rem; font-weight: 700">Projects</p>
         <p style="font-size: 1rem">
-          Major works ive worked on with my hands on experiance
+          Selected projects that highlight real-world impact and innovation
         </p>
       </div>
       <div
@@ -316,10 +313,7 @@
             AI Resume Maker
           </p>
           <p style="font-size: 0.8rem">
-            Your app is currently targeting Android 13 (API level 33). Since
-            Google Play's new policy requires apps to target at least Android 14
-            (API level 34) starting August 31, 2025, you must update your app to
-            target API 34 or higher by that deadline.
+            A dynamic tool to instantly generate resumes using AI, tailored to industry needs and user input. Makes job-seeking smarter and faster.
           </p>
           <button
             style="
@@ -358,10 +352,7 @@
             Design App (MAUI)
           </p>
           <p style="font-size: 0.8rem">
-            Your app is currently targeting Android 13 (API level 33). Since
-            Google Play's new policy requires apps to target at least Android 14
-            (API level 34) starting August 31, 2025, you must update your app to
-            target API 34 or higher by that deadline.
+            A multi-platform design solution built with MAUI, enabling seamless design system management and real-time previews across devices.
           </p>
           <button
             style="
@@ -399,10 +390,7 @@
             Build Lab AI
           </p>
           <p style="font-size: 0.8rem">
-            Your app is currently targeting Android 13 (API level 33). Since
-            Google Play's new policy requires apps to target at least Android 14
-            (API level 34) starting August 31, 2025, you must update your app to
-            target API 34 or higher by that deadline.
+            An experimental lab to test, build, and iterate on AI components and agent behavior using modular workflows and sandboxed testing.
           </p>
           <button
             style="
@@ -432,10 +420,7 @@
       >
         <p style="font-size: 1rem; font-weight: 600">Yes, exactly.</p>
         <p style="font-size: 1rem; width: 90%">
-          Your app is currently targeting Android 13 (API level 33). Since
-          Google Play's new policy requires apps to target at least Android 14
-          (API level 34) starting August 31, 2025, you must update your app to
-          target API 34 or higher by that deadline.
+          These projects aren’t just demos — they’re functioning platforms built with purpose and polish.
         </p>
       </div>
     </section>
@@ -467,7 +452,7 @@
       >
         <p style="font-size: 2rem; font-weight: 700">Research Paper</p>
         <p style="font-size: 1rem">
-          Major works ive worked on with my hands on experiance
+          Academic research and innovation-driven explorations I’ve contributed to
         </p>
       </div>
       <div
@@ -514,10 +499,7 @@
               Smart Learning : AI Helps Every Students in learning
             </p>
             <p style="font-size: 0.8rem">
-              Smart Learning revolutionizes education by making learning
-              personalized and efficient. AI tailors lessons to each student's
-              pace, strengths, and gaps. It empowers learners with instant
-              feedback, smarter study paths, and interactive support.
+              A forward-looking paper that explores how AI can personalize education, adapt content dynamically, and provide real-time feedback to enhance learning outcomes for students globally.
             </p>
           </div>
         </div>
@@ -532,10 +514,7 @@
       >
         <p style="font-size: 1rem; font-weight: 600">Yes, exactly.</p>
         <p style="font-size: 1rem; width: 90%">
-          Your app is currently targeting Android 13 (API level 33). Since
-          Google Play's new policy requires apps to target at least Android 14
-          (API level 34) starting August 31, 2025, you must update your app to
-          target API 34 or higher by that deadline.
+          Research fuels the solutions of tomorrow — blending knowledge with practical builds is the way I work.
         </p>
       </div>
     </section>
@@ -658,26 +637,22 @@
         const nav = document.querySelector("nav");
         const menu = document.getElementById("mobileNav");
         const overlay = document.getElementById("overlay");
-        const isMenuOpen = menu.style.visibility === "visible";
-        if (!nav.contains(event.target) && isMenuOpen) {
-          menu.style.visibility = "hidden";
-          menuid.style.maxHeight = "0";
-          menuid.style.height = "0";
+
+        if (!nav.contains(event.target) && menu.classList.contains("open")) {
+          menu.classList.remove("open");
           overlay.style.visibility = "hidden";
         }
       });
 
       function menuOpen() {
-        var menuid = document.getElementById("mobileNav"); // No #
-        if (menuid.style.visibility === "visible") {
-          menuid.style.visibility = "hidden";
-          menuid.style.maxHeight = "0";
-          menuid.style.height = "0";
+        const menu = document.getElementById("mobileNav");
+        const overlay = document.getElementById("overlay");
+
+        if (menu.classList.contains("open")) {
+          menu.classList.remove("open");
           overlay.style.visibility = "hidden";
         } else {
-          menuid.style.visibility = "visible";
-          menuid.style.height = "auto";
-          menuid.style.maxHeight = "500px";
+          menu.classList.add("open");
           overlay.style.visibility = "visible";
         }
       }
