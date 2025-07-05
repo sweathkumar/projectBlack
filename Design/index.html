@@ -852,6 +852,11 @@
         sendBtn.click();    // Trigger button click
       }
     });
+
+    window.addEventListener("resize", () => {
+      const height = window.innerHeight;
+      aiSpace.style.height = height + "px";
+    });
     </script>
   </body>
 </html>
