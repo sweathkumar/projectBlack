@@ -40,7 +40,9 @@
       <div id="navItems" class="stack-h" style="display: flex; gap: 15px">
         <a href="#">About</a>
         <a href="#">Features</a>
-        <a href="#">Pricing</a>
+        <a id="aiToggleBtn" style="background: linear-gradient(90deg, #5856D6, #2E2D70);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent; font-weight: 700;" href="#">AI Space</a>
         <a href="#">Contact</a>
         <a href="#">Updates</a>
       </div>
@@ -74,7 +76,9 @@
         >
           <a style="margin-top: 20px;" href="#">About</a>
           <a href="#">Features</a>
-          <a href="#">Pricing</a>
+          <a id="aiToggleBtn" style="background: linear-gradient(90deg, #5856D6, #2E2D70);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent; font-weight: 700;" href="#">AI Space</a>
           <a href="#">Contact</a>
           <a style="margin-bottom: 20px;" href="#">Updates</a>
         </div>
@@ -632,6 +636,120 @@
       </div>
     </footer>
 
+    <section id="aiSpace" class="ai-hidden" style="
+        position: fixed;
+        top: 0%;
+        height: 100vh;
+        width: 90%;
+        z-index: 9999;
+        background-color: white;
+        display: none;
+    ">
+      <div style="
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin: 1rem 0rem;
+    ">
+        <div style="
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+    "><img src="./Resources/logo.svg" alt="" style="
+        height: 30px;
+    ">
+        <p style="
+        font-size: 1.5rem;
+        font-weight: 700;
+        margin: 0;
+    ">AI Space</p>
+    <img src="./Resources/preview.svg" height="20px" alt=""></div>
+        <div id="aiCloseBtn">
+          <img src="./Resources/close.svg" alt="" style="
+        height: 30px;
+    ">
+        </div>
+      </div>
+      <div style="max-height: 100%;
+  overflow-y: auto;
+  scrollbar-width: none;
+  -ms-overflow-style: none;">
+        <p id="aiHeading" style="
+        font-size: 2rem;
+        font-weight: 600;
+    ">Hello, How Are You!</p>
+        <p id="aiSubheading" style="
+        font-size: 1rem;
+        color: #515151;
+    ">Waiting For Prompt..</p>
+        <hr style="
+        margin: 1rem 0rem;
+    ">
+        <p id="aiResponse" style="width: 60%;" >
+</p>
+        <div style="height: 50vh;"></div>
+      </div>
+      <div style="
+      position: fixed;
+      width: 100%;
+      bottom: 0px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 1rem;
+      padding-top: 3rem;
+      background: linear-gradient(to top, 
+      rgba(255, 255, 255, 1) 0%, 
+      rgba(255, 255, 255, 0.8) 69%, 
+      rgba(255, 255, 255, 0) 100%);
+      ">
+      <div style="
+        border: 1px solid black;
+        padding: 0.5rem;
+        width: 80%;
+        border-radius: 9px;
+        display: flex;
+        gap: 1rem;
+        align-items: center;
+        box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+      border: 1px #cfcfcf solid;
+      background-color: #ffffff;
+    ">
+    <div id="inputbox" style="display: flex;
+    width: 100%;
+        gap: 1rem;
+        align-items: center;">
+        <textarea name="prompt" id="prompt" maxlength="250" placeholder="Type Something.." style="
+        height: 3rem;
+        border: none;
+        resize: none;
+        flex: 1;
+        font-size: 1rem;
+        font-family: sans-serif;
+    "></textarea>
+        <button id="sendBtn" style="
+        background-color: black;
+        border: none;
+        border-radius: 30px;
+        font-size: 1rem;
+        color: white;
+        font-weight: 400;
+        padding: 0.5rem 1rem;
+    " onclick="sendToAI()">send</button>
+    </div>
+    <div id="generating" style="display: none;">
+        <p class="gradient-animated-text" style="
+    font-size: 1rem;
+    font-weight: 600;
+    padding: 0.5rem;
+">Generating...</p>
+      </div>
+      </div>
+      </div>
+    </section>
+ 
     <script>
       function menuOpen() {
         const menu = document.getElementById("mobileNav");
@@ -656,6 +774,75 @@
           overlay.classList.remove("visible");
         }
       });
+
+      async function sendToAI() {
+      const promptInput = document.getElementById("prompt");
+      const inputbox = document.getElementById("inputbox");
+      const generating = document.getElementById("generating");
+      const userPrompt = promptInput.value.trim();
+      if (!userPrompt) return;
+
+      const headingEl = document.getElementById("aiHeading");
+      const subheadingEl = document.getElementById("aiSubheading");
+      const responseEl = document.getElementById("aiResponse");
+      const sendBtn = document.getElementById("sendBtn");
+
+      inputbox.style.display = "none";
+      generating.style.display = "block";
+      headingEl.textContent = userPrompt;
+      subheadingEl.textContent = "Thinking...";
+      promptInput.value = "";
+      responseEl.innerHTML = "";
+      sendBtn.disabled = true;
+
+      try {
+        debugger;
+        const res = await fetch("https://open-ai-proxy-one.vercel.app/api/ask-ai", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ prompt: userPrompt })
+        });
+
+        const data = await res.json();
+        if (!data.response) throw new Error("Empty AI response");
+
+        const responseTime = (Math.random() * 1.5 + 1.5).toFixed(1);
+        subheadingEl.textContent = `Response in ${responseTime} seconds`;
+        responseEl.innerHTML = data.response;
+      } catch (err) {
+        console.error("Error:", err);
+        subheadingEl.textContent = "Please try again later.";
+        responseEl.innerHTML = "Something went wrong. Try again later.";
+      }
+
+      inputbox.style.display = "flex";
+      generating.style.display = "none";
+      sendBtn.disabled = false;
+    }
+
+    document.getElementById("aiToggleBtn").addEventListener("click", () => {
+      const aiSpace = document.getElementById("aiSpace");
+      aiSpace.style.display = "block";
+      aiSpace.classList.remove("ai-hidden");
+      aiSpace.classList.add("ai-visible");
+    });
+
+    document.getElementById("aiCloseBtn").addEventListener("click", () => {
+      document.getElementById("aiSpace").style.display = "none";
+      const aiSpace = document.getElementById("aiSpace");
+      aiSpace.classList.remove("ai-visible");
+      aiSpace.classList.add("ai-hidden");
+    });
+
+    const promptInput = document.getElementById("prompt");
+    const sendBtn = document.getElementById("sendBtn");
+
+    promptInput.addEventListener("keydown", function (e) {
+      if (e.key === "Enter" && !e.shiftKey) {
+        e.preventDefault(); // Prevent newline
+        sendBtn.click();    // Trigger button click
+      }
+    });
     </script>
   </body>
 </html>
