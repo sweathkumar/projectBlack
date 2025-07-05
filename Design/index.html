@@ -852,6 +852,31 @@
         sendBtn.click();    // Trigger button click
       }
     });
+
+    const wrapper = document.getElementById("aiSpace");
+
+    function handleViewportResize() {
+      if (window.visualViewport) {
+        function updateHeight() {
+          const vh = window.visualViewport.height;
+          wrapper.style.height = vh + "px";
+        }
+
+        // Initial call
+        updateHeight();
+
+        // Listen to keyboard opening/closing
+        window.visualViewport.addEventListener("resize", updateHeight);
+        window.visualViewport.addEventListener("scroll", updateHeight);
+      } else {
+        // Fallback for older browsers
+        window.addEventListener("resize", () => {
+          wrapper.style.height = window.innerHeight + "px";
+        });
+      }
+    }
+
+    handleViewportResize();
     </script>
   </body>
 </html>
