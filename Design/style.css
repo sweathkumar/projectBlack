@@ -205,4 +205,8 @@ textarea:focus {
     visibility: visible !important;
     transition: max-height 0.9s ease, visibility 0s ;
   }
+
+  #aiSpace{
+    z-index: 9999;
+  }
 }
