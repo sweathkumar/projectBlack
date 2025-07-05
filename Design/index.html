@@ -76,7 +76,7 @@
         >
           <a style="margin-top: 20px;" href="#">About</a>
           <a href="#">Features</a>
-          <a id="aiToggleBtn" style="background: linear-gradient(90deg, #5856D6, #2E2D70);
+          <a id="aiToggleBtnmob" style="background: linear-gradient(90deg, #5856D6, #2E2D70);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent; font-weight: 700;" href="#">AI Space</a>
           <a href="#">Contact</a>
@@ -821,6 +821,15 @@
     }
 
     document.getElementById("aiToggleBtn").addEventListener("click", () => {
+      debugger;
+      const aiSpace = document.getElementById("aiSpace");
+      aiSpace.style.display = "block";
+      aiSpace.classList.remove("ai-hidden");
+      aiSpace.classList.add("ai-visible");
+    });
+
+    document.getElementById("aiToggleBtnmob").addEventListener("click", () => {
+      debugger;
       const aiSpace = document.getElementById("aiSpace");
       aiSpace.style.display = "block";
       aiSpace.classList.remove("ai-hidden");
