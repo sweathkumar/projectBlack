@@ -209,4 +209,8 @@ textarea:focus {
   #aiSpace{
     z-index: 9999;
   }
+
+  #aiResponse{
+    width: 90% !important;
+  }
 }
