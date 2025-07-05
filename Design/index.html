@@ -820,28 +820,53 @@
       sendBtn.disabled = false;
     }
 
-    document.getElementById("aiToggleBtn").addEventListener("click", () => {
-      debugger;
-      const aiSpace = document.getElementById("aiSpace");
-      aiSpace.style.display = "block";
-      aiSpace.classList.remove("ai-hidden");
-      aiSpace.classList.add("ai-visible");
-    });
+    function openAISpace() {
+    const aiSpace = document.getElementById("aiSpace");
+    if (!aiSpace) return;
 
-    document.getElementById("aiToggleBtnmob").addEventListener("click", () => {
-      debugger;
-      const aiSpace = document.getElementById("aiSpace");
-      aiSpace.style.display = "block";
-      aiSpace.classList.remove("ai-hidden");
-      aiSpace.classList.add("ai-visible");
-    });
+    aiSpace.style.display = "block";
+    aiSpace.classList.remove("ai-hidden");
+    aiSpace.classList.add("ai-visible");
+  }
 
-    document.getElementById("aiCloseBtn").addEventListener("click", () => {
-      document.getElementById("aiSpace").style.display = "none";
-      const aiSpace = document.getElementById("aiSpace");
-      aiSpace.classList.remove("ai-visible");
-      aiSpace.classList.add("ai-hidden");
-    });
+  function closeAISpace() {
+    const aiSpace = document.getElementById("aiSpace");
+    if (!aiSpace) return;
+
+    aiSpace.classList.remove("ai-visible");
+    aiSpace.classList.add("ai-hidden");
+
+    // Delay hiding so animation completes
+    setTimeout(() => {
+      aiSpace.style.display = "none";
+    }, 300);
+  }
+
+  // Open on desktop toggle
+  document.getElementById("aiToggleBtn")?.addEventListener("click", () => {
+    openAISpace();
+  });
+
+  // Open on mobile toggle
+  document.getElementById("aiToggleBtnmob")?.addEventListener("click", () => {
+    openAISpace();
+  });
+
+  // Close button (only if included in HTML)
+  document.getElementById("aiCloseBtn")?.addEventListener("click", () => {
+    closeAISpace();
+  });
+
+  // Open automatically on route /aispace
+  window.addEventListener("DOMContentLoaded", () => {
+    if (window.location.pathname === "/aispace") {
+      openAISpace();
+
+      // Optional: hide close button
+      const closeBtn = document.getElementById("aiCloseBtn");
+      if (closeBtn) closeBtn.style.display = "none";
+    }
+  });
 
     const promptInput = document.getElementById("prompt");
     const sendBtn = document.getElementById("sendBtn");
