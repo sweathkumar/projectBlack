@@ -50,7 +50,7 @@ nav {
   margin: 0;
   background-color: black;
   backdrop-filter: blur(2px);
-  z-index: 9998;
+  z-index: 9996;
   opacity: 0;
   visibility: hidden;
   transition: opacity 0.3s ease, visibility 0s linear 0.3s;
