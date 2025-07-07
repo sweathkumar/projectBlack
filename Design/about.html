@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>About</title>
+    <link rel="stylesheet" href="./style.css" />
+    <link rel="icon" href="Resources/logoTab.ico" type="image/x-icon" />
+  </head>
+  <body>
+    <nav
+      style="
+        display: flex;
+        align-items: center;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        padding: 10px;
+        background-color: white;
+        border-radius: 5px;
+        position: fixed;
+        width: 90%;
+        top: 10px;
+        inset-inline: 0;
+        margin-inline: auto;
+      "
+    >
+      <div
+        class="stack-h"
+        style="display: flex; align-items: center; gap: 10px"
+      >
+        <img src="./Resources/logo.svg" style="height: 30px; width: 30px" />
+        <a
+          style="margin: 0px; font-size: 1.5rem; font-weight: 600"
+          href="./index.html"
+        >
+          About
+        </a>
+      </div>
+
+      <div id="navItems" class="stack-h" style="display: flex; gap: 15px">
+        <a href="./about.html">About</a>
+        <a href="#">Features</a>
+        <a
+          id="aiToggleBtn"
+          style="
+            background: linear-gradient(90deg, #5856d6, #2e2d70);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-weight: 700;
+          "
+          href="#"
+          >AI Space</a
+        >
+        <a href="#">Contact</a>
+        <a href="#">Updates</a>
+      </div>
+
+      <button
+        class="NavButton"
+        style="
+          border: none;
+          background-color: black;
+          padding: 10px 30px;
+          border-radius: 30px;
+        "
+        onclick="menuOpen()"
+      >
+        <span style="color: white; font-size: 1rem; font-weight: 500"
+          >Connect</span
+        >
+        <img style="display: none" src="./Resources/menu.svg" alt="" />
+      </button>
+
+      <div id="mobileNav" class="mobileNav" style="display: block; width: 100%">
+        <div
+          class="stack-h"
+          style="
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            align-items: center;
+          "
+        >
+          <a style="margin-top: 20px" href="./about.html">About</a>
+          <a href="#">Features</a>
+          <a
+            id="aiToggleBtnmob"
+            style="
+              background: linear-gradient(90deg, #5856d6, #2e2d70);
+              -webkit-background-clip: text;
+              -webkit-text-fill-color: transparent;
+              font-weight: 700;
+            "
+            href="#"
+            >AI Space</a
+          >
+          <a href="#">Contact</a>
+          <a style="margin-bottom: 20px" href="#">Updates</a>
+        </div>
+      </div>
+    </nav>
+
+    <section id="overlay"></section>
+
+    <section
+      id="aiSpace"
+      class="ai-hidden"
+      style="
+        position: fixed;
+        top: 0%;
+        height: 100%;
+        width: 90%;
+        z-index: 9999;
+        background-color: white;
+        display: none;
+      "
+    >
+      <div
+        style="
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          margin: 1rem 0rem;
+        "
+      >
+        <div style="display: flex; align-items: center; gap: 1rem">
+          <img src="./Resources/logo.svg" alt="" style="height: 30px" />
+          <p style="font-size: 1.5rem; font-weight: 700; margin: 0">AI Space</p>
+          <img src="./Resources/preview.svg" height="20px" alt="" />
+        </div>
+        <div id="aiCloseBtn">
+          <img src="./Resources/close.svg" alt="" style="height: 30px" />
+        </div>
+      </div>
+      <div
+        style="
+          max-height: 100%;
+          overflow-y: auto;
+          scrollbar-width: none;
+          -ms-overflow-style: none;
+        "
+      >
+        <p id="aiHeading" style="font-size: 2rem; font-weight: 600">
+          Hello, How Are You!
+        </p>
+        <p id="aiSubheading" style="font-size: 1rem; color: #515151">
+          Waiting For Prompt..
+        </p>
+        <hr style="margin: 1rem 0rem" />
+        <p id="aiResponse" style="width: 60%"></p>
+        <div style="height: 50vh"></div>
+      </div>
+      <div
+        style="
+          position: fixed;
+          width: 100%;
+          bottom: 0px;
+          left: 50%;
+          transform: translateX(-50%);
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          padding: 1rem;
+          padding-top: 3rem;
+          background: linear-gradient(
+            to top,
+            rgba(255, 255, 255, 1) 0%,
+            rgba(255, 255, 255, 0.8) 69%,
+            rgba(255, 255, 255, 0) 100%
+          );
+        "
+      >
+        <div
+          style="
+            border: 1px solid black;
+            padding: 0.5rem;
+            width: 80%;
+            border-radius: 9px;
+            display: flex;
+            gap: 1rem;
+            align-items: center;
+            box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+            border: 1px #cfcfcf solid;
+            background-color: #ffffff;
+          "
+        >
+          <div
+            id="inputbox"
+            style="display: flex; width: 100%; gap: 1rem; align-items: center"
+          >
+            <textarea
+              name="prompt"
+              id="prompt"
+              maxlength="250"
+              placeholder="Type Something.."
+              style="
+                height: 3rem;
+                border: none;
+                resize: none;
+                flex: 1;
+                font-size: 1rem;
+                font-family: sans-serif;
+              "
+            ></textarea>
+            <button
+              id="sendBtn"
+              style="
+                background-color: black;
+                border: none;
+                border-radius: 30px;
+                font-size: 1rem;
+                color: white;
+                font-weight: 400;
+                padding: 0.5rem 1rem;
+              "
+              onclick="sendToAI()"
+            >
+              send
+            </button>
+          </div>
+          <div id="generating" style="display: none">
+            <p
+              class="gradient-animated-text"
+              style="font-size: 1rem; font-weight: 600; padding: 0.5rem"
+            >
+              Generating...
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section style="height: fit-content">
+      <div style="margin: 5rem 0;">
+        <div class="descArea shadow" style="border-radius: 10px; padding: 1rem;">
+          <p class="head1">About Sweet Labs</p>
+          <p class="desc">Building the Future, One Thoughtful Solution at a Time</p>
+          <p class="desc">
+            Sweet Labs is the creative engine of Sweath, a developer who blends
+            cutting-edge technology with human-centric design. Here, innovation
+            isn’t just about code—it’s about crafting intuitive, impactful tools
+            that solve real problems. With a focus on AI, mobile/web
+            development, and experimental design, every project is a step toward
+            smarter, more seamless digital experiences.
+          </p>
+        </div>
+        <div class="descArea shadow" style="border-radius: 10px; padding: 1rem;">
+          <p class="head1">Who’s Behind Sweet Labs?</p>
+          <p class="desc">Hi, I’m Sweath—a quiet builder obsessed with turning ideas into polished, functional realities. As an introvert developer, I thrive in the deep work zone: analyzing systems, refining user flows, and designing solutions that speak louder than words. My approach? Less hype, more substance.</p>
+        </div>
+        <div class="descArea shadow" style="border-radius: 10px; padding: 1rem;">
+            <p class="head1">What Drives This Lab?</p>
+            <ul class="desc">
+                <li><strong>Precision Over Noise:</strong> Careful thought &gt; rushed execution.</li>
+                <li><strong>AI for Good:</strong> Leveraging automation to simplify tasks (like resumes or learning).</li>
+                <li><strong>Cross-Platform Magic:</strong> Building fluid experiences across web, mobile, and beyond.</li>
+                <li><strong>Experimentation:</strong> The Build Lab AI project embodies my love for tinkering with AI agents and modular tools.</li>
+            </ul>
+        </div>
+        <div class="descArea shadow" style="border-radius: 10px; padding: 1rem;">
+            <p class="head1">Why Work With Me?</p>
+            <ul class="desc">
+                <li><strong>Hands-On Expertise:</strong> From MAUI apps to AI-driven platforms, I build—not just theorize.</li>
+                <li><strong>User-First Mindset:</strong> Solutions are designed for clarity and impact.</li>
+                <li><strong>Quiet Reliability:</strong> No flashy promises—just consistent, high-quality results.</li>
+            </ul>
+        </div>
+        <div class="descArea shadow" style="border-radius: 10px; padding: 1rem;">
+            <p class="head1">Let’s Build Tomorrow</p>
+            <p class="desc">Whether you need a sleek app, an AI tool, or a collaborative moonshot, Sweet Labs is where imagination meets execution.</p>
+        </div>
+        <div class="descArea shadow" style="border-radius: 10px;padding: 1rem;background-color: black;color: white;display: flex;align-items: center;justify-content: space-between;">
+            <p class="head1">Curious? </p><span style="
+    background-color: white;
+    padding: 1rem;
+    border-radius: 10px;
+    color: black;
+    font-size: 1rem;
+    font-weight: 700;
+"> Get in touch. </span>
+        </div>
+      </div>
+    </section>
+
+    <footer style="background-color: black; padding: 5% 5%">
+      <div style="display: flex; flex-direction: column; gap: 50px">
+        <div
+          class="footerResp"
+          style="display: flex; align-items: start; gap: 50px"
+        >
+          <div style="display: flex; gap: 10px; align-items: center">
+            <img
+              src="./Resources/logoWhite.svg"
+              style="color: white; height: 30px; width: 30px"
+            />
+            <h3
+              style="
+                color: white;
+                margin: 0px;
+                font-size: 1.5rem;
+                font-weight: 600;
+              "
+            >
+              Sweet Labs
+            </h3>
+          </div>
+          <div style="display: flex; gap: 30px">
+            <div style="display: flex; flex-direction: column; gap: 10px">
+              <a href="/./Design/about.html">About</a>
+              <a href="#">Features</a>
+              <a href="#">Pricing</a>
+              <a href="#">Contact</a>
+              <a href="#">Updates</a>
+            </div>
+            <div style="display: flex; flex-direction: column; gap: 10px">
+              <a href="#">Instagram</a>
+              <a href="#">X</a>
+              <a href="#">Threads</a>
+              <a href="#">LinkedIn</a>
+              <a href="#">BlueSky</a>
+            </div>
+          </div>
+        </div>
+        <div
+          class="footerResp"
+          style="
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+          "
+        >
+          <p style="font-size: 1rem; color: white">
+            Built with Love by Sweath, a Creative Developer.
+          </p>
+          <p style="font-size: 1rem; color: white">
+            © 2025 projectblack. All rights reserved.
+          </p>
+        </div>
+      </div>
+    </footer>
+
+    <script src="./script.js"></script>
+  </body>
+</html>
